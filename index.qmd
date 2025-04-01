@@ -275,7 +275,8 @@ boosting. This justifies certain requests for switching slots.
 
 ### Presentation Task Board
 
-Talk to the professor about your topics. Here are some example tasks:
+Talk to the professor about your topics at least one week prior to
+your scheduled presentation. Here are some example tasks:
 
 + Making presentations with Quarto
 + Markdown jumpstart
@@ -293,6 +294,7 @@ Talk to the professor about your topics. Here are some example tasks:
 + Animation
 + Support vector machine
 + Random forest
++ Gradient boosting machine
 + Naive Bayes
 + Neural networks
 + Deep learning
@@ -339,15 +341,15 @@ Please use the following table to sign up.
    03/05 |  Schittina, Thomas     | Spatial Data With Geopandas & Google Maps
    03/10 |  Kline, Daniel Esteban     |
    03/12 |  Edo, Mezmur Wossenu      | Principal Component Analysis (PCA)
-   03/24 |  Alsadadi, Ammar Shaker     |
-   03/24 |  Fables, Xavier Milan     |
-   03/31 |  Tamhane, Shubhan     |
+   03/26 |  Alsadadi, Ammar Shaker     | Sentiment Analysis with Python 
+   03/26 |  Fables, Xavier Milan     | Variable Importance Metrics in Supervised Learning
+   03/31 |  Tamhane, Shubhan     | Support Vector Machine
    03/31 |  Nasejje, Ruth Nicole     | Personal webpage on GitHub
-   04/02 |  Lagutin, Vladislav     |
+   04/02 |  Lagutin, Vladislav     | Google Maps visualizations using Folium library
    04/02 |  Zhang, Gaofei    | Random forest
-   04/07 |  Long, Ethan Kenneth     |
-   04/07 |  Xu, Peiwen   | 
-   04/09 |  Kravette, Noah   | 
+   04/07 |  Long, Ethan Kenneth     | Synthetic Minority Oversampling Technique (SMOTE)
+   04/07 |  Xu, Peiwen   | Developing a Python package
+   04/09 |  Kravette, Noah   | Working with NetCDF Data 
    04/09 |  Symula, Sebastian   | Imputation Methods for Missing Data
    04/09 |  Tomaino, Mario Anthony   | 
    04/12 |  Reed, Kyle Daniel   | 
@@ -355,7 +357,7 @@ Please use the following table to sign up.
    04/12 |  Mundiwala, Mohammad Moiz   | Math animations with manim
    04/16 |  Lin, Selena   | 
    04/16 |  Pfeifer, Nicholas Theodore   | 
-   04/16 |  Vellore, Ajeeth Krishna | 
+   04/16 |  Vellore, Ajeeth Krishna | Neural Network Basics
 
 
 ### Final Project Presentation Schedule
