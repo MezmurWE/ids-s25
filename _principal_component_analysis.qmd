@@ -14,7 +14,7 @@ Some of the motivations behind PCA are:
 
 - Curse of dimensionality
 
-#### Curse of dimensionality
+#### Curse of Dimensionality
 
 The Euclidean distance between data points, which we represent as vectors, shrinks with the number of dimensions. To demonstrate this, let's generate 10,000 vectors of n dimensions each, where n ranges from 2 to 50, with integer entries ranging from -100 to 100. By selecting a random vector, Q, of the same dimension, we can calculate the Euclidean distance of Q to each of these 10,000 vectors. The plot below shows the logarithm, to the base 10, of difference between the maximum and minimum distances divided by the minimum distance as a function of the number of dimensions.
 
@@ -32,7 +32,8 @@ from matplotlib.ticker import AutoMinorLocator
 
 #define a list to store delta values
 #delta is the logarithm, to the base 10, of difference between
-#the maximum and minimum Euclidean distances divided by the minimum distance
+#the maximum and minimum Euclidean distances divided 
+#by the minimum distance
 deltas = []
 
 #loop through dimensions from 2 to 49
@@ -68,29 +69,38 @@ plt.show()
 ```
 ### Intuition
 
-We aim to find orthogonal directions of maximum variance in data. Directions with sufficently low variance in the data can be removed.
+We aim to find orthogonal directions of maximum variance in data. Directions with sufficiently low variance in the data can be removed.
 
 ```{python}
 #| echo: true
 rng = np.random.RandomState(0)
 n_samples = 200
 
-#generate a 2D dataset with 200 entries from a multivariate normal distribution
-X = rng.multivariate_normal(mean=[0,0], cov=[[3, 3], [3, 4]], size=n_samples)
+#generate a 2D dataset with 200 entries from 
+#a multivariate normal distribution
+X = rng.multivariate_normal(mean=[0,0], \
+							cov=[[3, 3], [3, 4]], size=n_samples)
 
-#perform PCA on the generated data to find the two principal components
+#perform PCA on the generated data to find 
+#the two principal components
 pca = PCA(n_components=2).fit(X)
 
 #plot the generated data
 plt.scatter(X[:,0], X[:,1], label = 'Data')
 
-#plot the first principal component scaled by its explained variance
-plt.plot([0, pca.components_[0][0]* pca.explained_variance_[0]], [0, pca.components_[0][1]* pca.explained_variance_[0]] \
-, color='green', linewidth=5, label = r'First Principal Component ($p_1$)')
+#plot the first principal component scaled by 
+#its explained variance
+plt.plot([0, pca.components_[0][0]* pca.explained_variance_[0]] \
+, [0, pca.components_[0][1]* pca.explained_variance_[0]] \
+, color='green', linewidth=5 \
+, label = r'First Principal Component ($p_1$)')
 
-#plot the second principal component scaled by its explained variance
-plt.plot([0, pca.components_[1][0]* pca.explained_variance_[1]], [0, pca.components_[1][1]* pca.explained_variance_[1]] \
-, color='red', linewidth=5, label = r'Second Principal Component ($p_2$)')
+#plot the second principal component scaled by 
+#its explained variance
+plt.plot([0, pca.components_[1][0]* pca.explained_variance_[1]] \
+, [0, pca.components_[1][1]* pca.explained_variance_[1]] \
+, color='red', linewidth=5 \
+, label = r'Second Principal Component ($p_2$)')
 plt.title("")
 plt.xlabel("First Feature", loc = 'right', fontsize = 10)
 plt.ylabel("Second Feature", loc = 'top', fontsize = 10)
@@ -102,7 +112,7 @@ We can then project the data onto the first principal component direction, $p_1$
 
 ### Theory
 
-Let $x$ be a datapoint with features $f_1$, $f_2$, $f_3$, ..., $f_n$,
+Let $x$ be a data point with features $f_1$, $f_2$, $f_3$, ..., $f_n$,
 
 $$x = \begin{pmatrix}
 f_1\\
@@ -119,7 +129,7 @@ The projection of x onto p is then,
 
 $$x^{T} \frac{p}{||p||}$$
 
-Hence, the projection of all datapoints onto the principal component direction, p, can be written as ,
+Hence, the projection of all data points onto the principal component direction, p, can be written as ,
 
 $$\begin{pmatrix}
 x_1^{T} \frac{p}{||p||}\\
@@ -168,7 +178,7 @@ which has the following solution,
 $$Sp = \lambda p$$
 
 
-#### Scikit-learn Implimentation
+#### Scikit-learn Implementation
 
 Computation can be done using the single value decomposition of X.
 
@@ -186,13 +196,14 @@ $$\frac{\sum_{j=1}^{k} \lambda_j}{trace(s)}$$
 
 ### PCA With and Without Scaling
 
-For proper implementation of PCA, data must be scaled. To demonstrate this, we generate a dataset with the first 4 features selected from a normal distribution with mean 0 and standard deviation 1. We then append a fifth feature drawn from a uniform distribution with integer entries ranging from 1 to 10. The plot of the first principal component vs second principal component does not show the expected noise structure of the data unless the data is scaled.
+For proper implementation of PCA, data must be scaled. To demonstrate this, we generate a dataset with the first 4 features selected from a normal distribution with mean 0 and standard deviation 1. We then append a fifth feature drawn from a uniform distribution with integer entries ranging from 1 to 10. The plot of the projection of the data onto first principal component versus the projection onto the second principal component does not show the expected noise structure unless the data is scaled.
 
 ```{python}
 #| echo: true
 np.random.seed(42)
 
-#generate a feature of size 10,000 with integer entries ranging from 1 to 10
+#generate a feature of size 10,000 with integer entries 
+#ranging from 1 to 10
 feature = np.random.randint(1, 10, 10000)
 N = 10000
 P = 4
@@ -206,8 +217,9 @@ X = np.append(X, feature.reshape(10000,1), axis = 1)
 pca = PCA(2)
 pca_no_scale = pca.fit_transform(X)
 
-#plot the projection of the data onto the first principal component versus
-#the projection onto the second principal component
+#plot the projection of the data onto the first principal
+#component versus the projection onto 
+#the second principal component
 plt.scatter(pca_no_scale[:,0], pca_no_scale[:,1])
 plt.title("PCA without Scaling")
 plt.xlabel("Principal Component 1", loc = 'right', fontsize = 10)
@@ -221,8 +233,9 @@ Xn = scale(X)
 pca = PCA(2)
 pca_scale = pca.fit_transform(Xn)
 
-#plot the projection of the data onto the first principal component versus
-#the projection onto the second principal component
+#plot the projection of the data onto the first principal 
+#component versus the projection onto
+#the second principal component
 plt.scatter(pca_scale[:,0], pca_scale[:,1])
 plt.title("PCA with Scaling")
 plt.xlabel("Principal Component 1", loc = 'right', fontsize = 10)
