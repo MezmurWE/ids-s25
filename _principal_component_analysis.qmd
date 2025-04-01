@@ -1,6 +1,6 @@
 ## Principal Component Analysis (PCA)
 
-The following section is written by Mezmur Edo. This section will focus on the motivation, intuition and theory behind PCA. It will also demonstrate the importance of scaling for proper implementation of PCA.
+The following section is written by Mezmur Edo. This section will focus on  the motivation, intuition and theory behind PCA. It will also demonstrate the importance of scaling for proper implementation of PCA.
 
 ### Motivation
 
@@ -16,7 +16,7 @@ Some of the motivations behind PCA are:
 
 #### Curse of Dimensionality
 
-The Euclidean distance between data points, which we represent as vectors, shrinks with the number of dimensions. To demonstrate this, let's generate 10,000 vectors of n dimensions each, where n ranges from 2 to 50, with integer entries ranging from -100 to 100. By selecting a random vector, Q, of the same dimension, we can calculate the Euclidean distance of Q to each of these 10,000 vectors. The plot below shows the logarithm, to the base 10, of difference between the maximum and minimum distances divided by the minimum distance as a function of the number of dimensions.
+The Euclidean distance between data points, which we represent as vectors,  shrinks with the number of dimensions. To demonstrate this, let's generate 10,000 vectors of n dimensions each, where n ranges  from 2 to 50, with integer entries ranging from -100 to 100. By selecting a random vector, Q, of the same dimension, we can calculate  the Euclidean distance of Q to each of these 10,000 vectors. The plot below shows the logarithm, to the base 10, of difference  between the maximum and minimum distances divided by the minimum distance as a function of the number of dimensions.
 
 ```{python}
 #| echo: true
@@ -69,7 +69,7 @@ plt.show()
 ```
 ### Intuition
 
-We aim to find orthogonal directions of maximum variance in data. Directions with sufficiently low variance in the data can be removed.
+We aim to find orthogonal directions of maximum variance in data. Directions  with sufficiently low variance in the data can be removed.
 
 ```{python}
 #| echo: true
@@ -129,7 +129,7 @@ The projection of x onto p is then,
 
 $$x^{T} \frac{p}{||p||}$$
 
-Hence, the projection of all data points onto the principal component direction, p, can be written as ,
+Hence, the projection of all data points onto the principal component direction,  p, can be written as ,
 
 $$\begin{pmatrix}
 x_1^{T} \frac{p}{||p||}\\
@@ -184,19 +184,19 @@ Computation can be done using the single value decomposition of X.
 
 $$X = U \Sigma V^T$$
 
-If the data is mean-centered (the default option in scikit-learn), the sample covariance matrix is given by,
+If the data is mean-centered (the default option in scikit-learn), the sample  covariance matrix is given by,
 
 $$S = \frac{1}{m} X^TX = \frac{1}{m} V\Sigma U^T U \Sigma V^T = V\frac{1}{m}\Sigma^2V^T$$
 
-which is the eigenvalue decomposition of S, with its eigenvectors as the columns of $V$ and the corresponding eigenvalues as diagonal entries of $\frac{1}{m}\Sigma^2$.
+which is the eigenvalue decomposition of S, with its eigenvectors as the columns  of $V$ and the corresponding eigenvalues as diagonal entries of $\frac{1}{m}\Sigma^2$.
 
-The variance explained by the j-th principal component, $p_j$, is $\lambda_{j}$ and the total variance explained is the sum of all the eigenvalues, which is also equal to the trace of S. The total variance explained by the first k principal components is then given by,
+The variance explained by the j-th principal component, $p_j$, is $\lambda_{j}$ and  the total variance explained is the sum of all the eigenvalues, which is also equal to the trace of S. The total variance explained  by the first k principal components is then given by,
 
 $$\frac{\sum_{j=1}^{k} \lambda_j}{trace(s)}$$
 
 ### PCA With and Without Scaling
 
-For proper implementation of PCA, data must be scaled. To demonstrate this, we generate a dataset with the first 4 features selected from a normal distribution with mean 0 and standard deviation 1. We then append a fifth feature drawn from a uniform distribution with integer entries ranging from 1 to 10. The plot of the projection of the data onto first principal component versus the projection onto the second principal component does not show the expected noise structure unless the data is scaled.
+For proper implementation of PCA, data must be scaled. To demonstrate this, we generate  a dataset with the first 4 features selected from a normal distribution with mean 0 and standard deviation 1. We then append a fifth  feature drawn from a uniform distribution with integer entries ranging from 1 to 10. The plot of the projection of the data onto  first principal component versus the projection onto the second principal component does not show the expected noise structure  unless the data is scaled.
 
 ```{python}
 #| echo: true
@@ -245,11 +245,11 @@ plt.show()
 
 ### Summary
 
-- PCA is a dimensionality reduction technique that projects data onto directions which explain the most variance in the data.
+- PCA is a dimensionality reduction technique that projects data onto directions which  explain the most variance in the data.
 
-- The principal component directions are the eigenvectors of the sample covariance matrix and the corresponding eigenvalues represent the variances explained.
+- The principal component directions are the eigenvectors of the sample covariance matrix  and the corresponding eigenvalues represent the variances explained.
 
-- For proper implementation of PCA, data must be mean-centered, scikit-learn default, and scaled.
+- For proper implementation of PCA, data must be mean-centered, scikit-learn default, and  scaled.
 
 
 ### Further Readings
