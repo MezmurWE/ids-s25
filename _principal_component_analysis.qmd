@@ -1,6 +1,8 @@
 ## Principal Component Analysis (PCA)
 
-The following section is written by Mezmur Edo. This section will focus on      the motivation, intuition and theory behind PCA. It will also demonstrate the importance of scaling for proper implementation of PCA.
+The following section is written by Mezmur Edo. This section will focus on  
+the motivation, intuition and theory behind PCA. It will also demonstrate  
+the importance of scaling for proper implementation of PCA.
 
 ### Motivation
 
